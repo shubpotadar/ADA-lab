@@ -136,11 +136,11 @@ Node* deleteNode(Node* root, int key) {
     return root;  
 }  
 
-void preOrder(Node *root) {  
+void inOrder(Node *root) {  
     if(root != NULL) {  
+        inOrder(root -> left); 
         cout << root -> key << " ";  
-        preOrder(root -> left);  
-        preOrder(root -> right);  
+        inOrder(root -> right);  
     }  
 }  
 
@@ -148,8 +148,9 @@ int main() {
     Node *root = NULL;
 
     int n;
+    cout << "Enter the number of elements:";  
     cin >> n;
-
+    cout << "Enter the elements: \n";  
     while (n--) {
       int key;
       cin >> key;
@@ -157,16 +158,17 @@ int main() {
       root = insert(root, key);
     }  
   
-    cout << "Preorder traversal of the constructed AVL tree is \n";  
-    preOrder(root);  
+    cout << "inOrder traversal of the constructed AVL tree is \n";  
+    inOrder(root);  
   
    int k;
+   cout << "\n Enter element to delete: " << endl; 
    cin >> k;
 
    root = deleteNode(root, k);  
   
-    cout << "\nPreorder traversal after deletion of " << k << endl;  
-    preOrder(root);  
+    cout << "\n inOrder traversal after deletion of " << k << endl;  
+    inOrder(root);  
   
     return 0;  
 }
